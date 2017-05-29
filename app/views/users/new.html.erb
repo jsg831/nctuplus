@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+    <h1 class="text-center">註冊</h1>
+    <br></br>
+    <%= bootstrap_form_for(@user) do |f| %>
+      <%= f.text_field :user_id, placeholder: "輸入使用者ID (4~20位)", label: "使用者ID" %>
+      <%= f.text_field :name, placeholder: "輸入名稱 ", label: "名稱" %>
+      <%= f.password_field :password, placeholder: "輸入密碼 (至少6位)", label: "密碼" %>
+      <%= f.password_field :password_confirmation, placeholder: "重新輸入密碼", label: "驗證密碼" %>
+      <%= f.submit "註冊", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+  </div>
+</div>

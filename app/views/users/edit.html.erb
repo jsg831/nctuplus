@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+    <h1 class="text-center">修改名稱</h1>
+    <br></br>
+    <%= bootstrap_form_for(@user) do |f| %>
+      <%= f.text_field :name, placeholder: "輸入名稱 ", label: "名稱" %>
+      <%= f.submit "確認", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+  </div>
+</div>

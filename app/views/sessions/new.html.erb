@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+    <h1 class="text-center">登入</h1>
+    <br></br>
+    <%= bootstrap_form_for(:session, url: login_path) do |f| %>
+      <%= f.text_field :user_id, placeholder: "輸入使用者ID", label: "使用者ID" %>
+      <%= f.password_field :password, placeholder: "輸入密碼", label: "密碼" %>
+      <%= f.submit "登入", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+  </div>
+</div>
