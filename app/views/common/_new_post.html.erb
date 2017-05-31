@@ -1,0 +1,15 @@
+<% if @post %>
+  <div class="modal fade" id="newPostModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">發文區</h4>
+        </div>
+        <div class="modal-body">
+          <%= render 'common/post_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

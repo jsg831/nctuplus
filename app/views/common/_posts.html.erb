@@ -1,0 +1,86 @@
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#news" data-toggle="tab">
+      <h5>最新消息 <span class="badge"><%= @news.count %></span></h5>
+    </a>
+  </li>
+  <li>
+    <a href="#updates" data-toggle="tab">
+      <h5>網站改版 <span class="badge"><%= @updates.count %></span></h5>
+    </a>
+  </li>
+</ul>
+<div class="tab-content ">
+  <div class="tab-pane active" id="news">
+    <table class="table table-hover pre-scrollable">
+      <thead>
+        <th class="col-xs-5">標題</th>
+        <th class="col-xs-2">更新時間</th>
+        <th class="col-xs-1"></th>
+      </thead>
+      </tbody>
+        <% @news.each do |post| %>
+          <% if post.is_public %>
+            <tr>
+          <% else %>
+            <tr class="warning">
+          <% end %>
+              <td><%= post.title %></td>
+              <td><%= post.updated_at %></td>
+              <td class="text-right">
+              <% if current_user?(post.user) %>
+                <%= link_to edit_post_path(post)  do %>
+                  <button type="button" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-edit"></span>
+                  </button>
+                <% end %>
+                <%= link_to post, method: :delete do %>
+                  <button type="button" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                <% end %>
+              <% end %>
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="updates">
+    <div class="tab-pane active" id="news">
+      <table class="table table-hover pre-scrollable">
+        <thead>
+          <th class="col-xs-5">標題</th>
+          <th class="col-xs-2">更新時間</th>
+          <th class="col-xs-1"></th>
+        </thead>
+        </tbody>
+        <% @updates.each do |post| %>
+          <% if post.is_public %>
+            <tr>
+          <% else %>
+            <tr class="warning">
+          <% end %>
+              <td><%= post.title %></td>
+              <td><%= post.updated_at %></td>
+              <td class="text-right">
+              <% if current_user?(post.user) %>
+                <%= link_to edit_post_path(post) do %>
+                  <button type="button" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-edit"></span>
+                  </button>
+                <% end %>
+                <%= link_to post, method: :delete do %>
+                  <button type="button" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                <% end %>
+              <% end %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

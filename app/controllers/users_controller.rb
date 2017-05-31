@@ -6,6 +6,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
+    if current_user?(@user)
+      @post = current_user.posts.build
+      @edit_post = nil
+      @news = @posts.where(post_type: 1)
+      @updates = @posts.where(post_type: 2)
+    else
+      @news = @posts.where(post_type: 1, is_public: true)
+      @updates = @posts.where(post_type: 2, is_public: true)
+    end
   end
 
   def index
@@ -26,10 +36,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
@@ -46,20 +52,12 @@ class UsersController < ApplicationController
     params.require(:user).permit(:user_id, :name, :password, :password_confirmation)
   end
 
-  # Redirect to login page if the user hasn't logged in.
-  def logged_in_user
-    unless logged_in?
-      flash[:danger] = "請登入!"
-      redirect_to login_url
-    end
-  end
-
   # Check if the user is editing or updating their own profile.
   def correct_user
     @user = User.find(params[:id])
     unless current_user?(@user)
       flash[:danger] = "僅能修改自己的資料"
-      redirect_to(root_url)
+      redirect_to root_url
     end
   end
 end

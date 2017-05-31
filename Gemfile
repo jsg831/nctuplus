@@ -36,7 +36,7 @@ gem 'bcrypt', '~> 3.1.11'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Beautify form!
+# Beautified forms!
 gem 'bootstrap_form'
 
 group :development, :test do

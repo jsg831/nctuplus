@@ -1,0 +1,8 @@
+<%= bootstrap_form_for(@post) do |f| %>
+  <%= f.select :post_type , options_for_select({"最新消息" => 1, "網站改版" => 2}), label: "發文類別" %>
+  <div class="field">
+    <%= f.text_area :title, placeholder: "輸入標題...", label: "標題" %>
+  </div>
+  <%= f.check_box :is_public, label: "發布" %>
+  <div class="text-right"><%= f.submit "確認", class: "btn btn-primary" %></div>
+<% end %>
